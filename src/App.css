@@ -1,0 +1,1516 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: #24211f;
+  color: #ffffff;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* =========================================
+   MAIN APP
+========================================= */
+
+.app {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #24211f;
+}
+
+
+/* =========================================
+   INTRO SCREEN
+========================================= */
+
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f7f0e5;
+
+  overflow: hidden;
+
+  animation:
+    introSlide 1.3s cubic-bezier(.77, 0, .18, 1) 4.1s forwards;
+}
+
+
+/* BIG GLOW */
+
+.intro-glow {
+  position: absolute;
+
+  width: 620px;
+  height: 620px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle,
+      rgba(190, 143, 73, 0.45) 0%,
+      rgba(190, 143, 73, 0.25) 25%,
+      rgba(190, 143, 73, 0.10) 50%,
+      transparent 72%);
+
+  filter: blur(25px);
+
+  opacity: 0;
+
+  transform: scale(0.15);
+
+  animation:
+    introGlowAppear 1.4s ease-out 0.2s forwards,
+    introGlowPulse 2.5s ease-in-out 1.7s infinite;
+}
+
+
+/* =========================================
+   INTRO RINGS
+========================================= */
+
+.intro-ring {
+  position: absolute;
+
+  border: 1px solid rgba(160, 118, 63, 0.25);
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  transform: scale(0.2);
+
+  animation:
+    introRingAppear 1.4s ease-out forwards;
+}
+
+.ring-one {
+  width: 360px;
+  height: 360px;
+  animation-delay: 0.5s;
+}
+
+.ring-two {
+  width: 520px;
+  height: 520px;
+  animation-delay: 0.7s;
+}
+
+.ring-three {
+  width: 680px;
+  height: 680px;
+  animation-delay: 0.9s;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo-wrapper {
+  position: relative;
+  z-index: 5;
+
+  width: 600px;
+  height: 600px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: scale(0.08);
+  opacity: 0;
+
+  animation:
+    logoExpand 1.8s cubic-bezier(.16, 1, .3, 1) 0.45s forwards,
+    logoBreath 2.8s ease-in-out 2.3s infinite;
+}
+
+
+/*
+ IMPORTANT:
+
+ The original logo image contains a lot
+ of empty space around the actual artwork.
+
+ Therefore the image itself is intentionally
+ larger than its wrapper.
+*/
+
+.intro-logo {
+  width: 900px;
+  height: 900px;
+
+  max-width: none;
+  max-height: none;
+
+  object-fit: contain;
+
+  display: block;
+
+  border-radius: 50%;
+
+  filter:
+    drop-shadow(0 0 12px rgba(155, 108, 45, 0.35)) drop-shadow(0 0 40px rgba(155, 108, 45, 0.25));
+
+  animation: logoGlow 2.2s ease-in-out 1.7s infinite alternate;
+}
+
+
+/* =========================================
+   INTRO ANIMATIONS
+========================================= */
+
+@keyframes logoExpand {
+  0% {
+    transform: scale(0.08);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+}
+
+@keyframes logoBreath {
+
+  0%,
+  100% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(0.81);
+  }
+}
+
+.logo-wrapper {
+  animation: logoExpand 3.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes introGlowAppear {
+
+  0% {
+    transform: scale(0.15);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+}
+
+
+@keyframes introGlowPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 0.85;
+  }
+}
+
+
+@keyframes introRingAppear {
+
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  60% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+@keyframes logoGlow {
+
+  0% {
+    filter:
+      drop-shadow(0 0 8px rgba(155, 108, 45, 0.25)) drop-shadow(0 0 20px rgba(155, 108, 45, 0.15));
+  }
+
+  100% {
+    filter:
+      drop-shadow(0 0 18px rgba(155, 108, 45, 0.55)) drop-shadow(0 0 50px rgba(155, 108, 45, 0.35));
+  }
+}
+
+
+@keyframes introSlide {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+  min-height: 100vh;
+
+  position: relative;
+
+  padding: 42px 4.3vw 35px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  background:
+    radial-gradient(circle at 78% 40%,
+      rgba(181, 132, 66, 0.09),
+      transparent 28%),
+    #24211f;
+}
+
+
+/*
+ If you want to add your own background image,
+ use this:
+
+ .hero {
+   background:
+     linear-gradient(rgba(36,33,31,.72), rgba(36,33,31,.72)),
+     url("/your-background.jpg") center/cover;
+ }
+*/
+
+
+/* =========================================
+   HERO TOP
+========================================= */
+
+.hero-top {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 15px;
+
+  letter-spacing: 5px;
+
+  font-weight: 700;
+
+  color: #ffffff;
+
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .4);
+}
+
+.gold-line {
+  width: 43px;
+  height: 1px;
+
+  background: #c99b5c;
+}
+
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.hero-content {
+  display: grid;
+
+  grid-template-columns: 1.15fr 0.85fr;
+
+  align-items: center;
+
+  gap: 50px;
+
+  flex: 1;
+}
+
+
+.hero-left {
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =========================================
+   HERO TITLE
+========================================= */
+
+.hero-title {
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: clamp(90px, 10vw, 155px);
+
+  line-height: 0.86;
+
+  letter-spacing: -7px;
+
+  font-weight: 700;
+
+  display: flex;
+
+  flex-direction: column;
+
+  margin: 25px 0 65px;
+
+  color: #ffffff;
+
+  animation: heroTextReveal 1.1s ease-out 5s both;
+}
+
+
+.hero-title span {
+  display: block;
+}
+
+
+.outline-text {
+  color: transparent;
+
+  -webkit-text-stroke:
+    1.5px rgba(255, 255, 255, 0.55);
+
+  position: relative;
+}
+
+
+.outline-text::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: #c99b5c;
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  animation:
+    outlineLine 1.2s ease-out 5.8s forwards;
+}
+
+
+@keyframes heroTextReveal {
+
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes outlineLine {
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+
+/* =========================================
+   HERO DESCRIPTION
+========================================= */
+
+.hero-description {
+  max-width: 600px;
+
+  font-size: 20px;
+
+  line-height: 1.65;
+
+  font-weight: 600;
+
+  color: #ffffff;
+
+  opacity: 1;
+
+  margin-bottom: 32px;
+
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .35);
+
+  animation:
+    fadeUp 1s ease-out 5.3s both;
+}
+
+
+/* =========================================
+   HERO BUTTON
+========================================= */
+
+.hero-button {
+  width: 335px;
+
+  height: 78px;
+
+  border: none;
+
+  background: #c99b5c;
+
+  color: #171513;
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 28px;
+
+  transition:
+    transform .3s ease,
+    background .3s ease;
+
+  animation:
+    fadeUp 1s ease-out 5.5s both;
+}
+
+
+.hero-button span {
+  font-size: 27px;
+
+  transition: transform .3s ease;
+}
+
+
+.hero-button:hover {
+  transform: translateY(-5px);
+
+  background: #ddb376;
+}
+
+
+.hero-button:hover span {
+  transform: translate(5px, -5px);
+}
+
+
+/* =========================================
+   ERP VISUAL
+========================================= */
+
+.erp-visual {
+  width: 500px;
+  height: 500px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  justify-self: center;
+
+  animation: erpAppear 1.5s ease-out 5s both;
+}
+
+
+.orbit {
+  position: absolute;
+
+  border: 1px solid rgba(205, 165, 105, 0.22);
+
+  border-radius: 50%;
+}
+
+
+.orbit-one {
+  width: 180px;
+  height: 180px;
+}
+
+
+.orbit-two {
+  width: 300px;
+  height: 300px;
+}
+
+
+.orbit-three {
+  width: 430px;
+  height: 430px;
+}
+
+
+.erp-core {
+  width: 155px;
+  height: 155px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle at 35% 30%,
+      #e0b77b,
+      #b47b38 70%);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+
+  font-size: 28px;
+
+  letter-spacing: 4px;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 0 35px rgba(198, 151, 84, 0.25),
+    inset 0 0 25px rgba(255, 255, 255, .15);
+
+  animation: corePulse 3s ease-in-out infinite;
+}
+
+
+@keyframes corePulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 35px rgba(198, 151, 84, 0.25);
+  }
+
+  50% {
+    transform: scale(1.05);
+    box-shadow:
+      0 0 60px rgba(198, 151, 84, 0.42);
+  }
+}
+
+
+@keyframes erpAppear {
+
+  from {
+    opacity: 0;
+    transform: scale(.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================
+   ORBIT DOTS
+========================================= */
+
+.orbit-dot {
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #d2a361;
+
+  box-shadow:
+    0 0 12px rgba(210, 163, 97, .7);
+}
+
+
+.dot-one {
+  top: 60px;
+  right: 95px;
+
+  animation: dotMove 5s linear infinite;
+}
+
+
+.dot-two {
+  bottom: 85px;
+  left: 90px;
+
+  animation: dotMove 7s linear infinite reverse;
+}
+
+
+.dot-three {
+  top: 170px;
+  left: 35px;
+
+  animation: dotMove 6s linear infinite;
+}
+
+
+@keyframes dotMove {
+
+  0% {
+    transform: rotate(0deg) translateX(20px);
+  }
+
+  50% {
+    transform: rotate(180deg) translateX(35px);
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(20px);
+  }
+}
+
+
+/* =========================================
+   SCROLL
+========================================= */
+
+.scroll-indicator {
+  position: absolute;
+
+  right: 4.5vw;
+  bottom: 30px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
+
+  font-weight: 700;
+
+  color: #ffffff;
+
+  opacity: .9;
+}
+
+
+.scroll-indicator div {
+  width: 40px;
+  height: 1px;
+
+  background: #c99b5c;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.section {
+  padding: 130px 8vw;
+
+  background: #24211f;
+}
+
+
+.section-label {
+  color: #ffffff;
+
+  font-size: 15px;
+
+  letter-spacing: 4px;
+
+  font-weight: 800;
+
+  margin-bottom: 55px;
+}
+
+
+.section-text {
+  color: #ffffff;
+
+  font-size: 21px;
+
+  line-height: 1.7;
+
+  font-weight: 600;
+
+  opacity: 1;
+
+  text-shadow: 0 1px 7px rgba(0, 0, 0, .35);
+}
+
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.about-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 100px;
+
+  margin-bottom: 90px;
+}
+
+
+.about-grid h2 {
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: clamp(45px, 5vw, 75px);
+
+  line-height: 1;
+
+  letter-spacing: -3px;
+
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+
+.program-cards {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+
+.program-card {
+  min-height: 290px;
+
+  border: 1px solid rgba(255, 255, 255, .22);
+
+  padding: 35px;
+
+  position: relative;
+
+  transition:
+    transform .4s ease,
+    border-color .4s ease,
+    background .4s ease;
+}
+
+
+.program-card:hover {
+  transform: translateY(-10px);
+
+  border-color: #c99b5c;
+
+  background: rgba(201, 155, 92, .06);
+}
+
+
+.card-number {
+  color: #c99b5c;
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+
+.program-card h3 {
+  color: #ffffff;
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 26px;
+
+  margin: 60px 0 20px;
+
+  font-weight: 800;
+}
+
+
+.program-card p {
+  color: #ffffff;
+
+  font-size: 17px;
+
+  line-height: 1.65;
+
+  font-weight: 600;
+
+  opacity: 1;
+}
+
+
+/* =========================================
+   FCFS
+========================================= */
+
+.fcfs-section {
+  padding-top: 40px;
+}
+
+
+.fcfs-card {
+  min-height: 390px;
+
+  padding: 65px;
+
+  border: 1px solid rgba(201, 155, 92, .5);
+
+  background:
+    linear-gradient(135deg,
+      rgba(201, 155, 92, .12),
+      rgba(201, 155, 92, .025));
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  align-items: center;
+
+  gap: 80px;
+}
+
+
+.fcfs-label {
+  color: #d4a76a;
+
+  font-size: 14px;
+
+  letter-spacing: 4px;
+
+  font-weight: 800;
+}
+
+
+.fcfs-card h2 {
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: clamp(55px, 6vw, 90px);
+
+  line-height: .95;
+
+  color: #ffffff;
+
+  margin-top: 25px;
+
+  letter-spacing: -4px;
+}
+
+
+.fcfs-right p {
+  color: #ffffff;
+
+  font-size: 23px;
+
+  line-height: 1.5;
+
+  font-weight: 600;
+
+  margin-bottom: 40px;
+}
+
+
+.fcfs-line {
+  width: 100%;
+
+  height: 1px;
+
+  background: rgba(255, 255, 255, .3);
+
+  margin-bottom: 20px;
+}
+
+
+.fcfs-right span {
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+}
+
+
+/* =========================================
+   REGISTRATION
+========================================= */
+
+.registration {
+  background: #211f1d;
+}
+
+
+.registration-heading {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 100px;
+
+  margin-bottom: 80px;
+}
+
+
+.registration-heading h2 {
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: clamp(60px, 7vw, 100px);
+
+  line-height: .9;
+
+  letter-spacing: -5px;
+
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.registration-form {
+  max-width: 1100px;
+}
+
+
+.form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 35px;
+}
+
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  margin-bottom: 38px;
+}
+
+
+.form-group label {
+  color: #ffffff;
+
+  font-size: 15px;
+
+  letter-spacing: 2.5px;
+
+  font-weight: 800;
+
+  margin-bottom: 13px;
+}
+
+
+.form-group input,
+.form-group select {
+  width: 100%;
+
+  height: 65px;
+
+  border: none;
+
+  border-bottom: 1px solid rgba(255, 255, 255, .55);
+
+  background: transparent;
+
+  outline: none;
+
+  color: #ffffff;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  transition:
+    border-color .3s ease;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #c99b5c;
+}
+
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, .78);
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  opacity: 1;
+}
+
+
+.form-group select {
+  cursor: pointer;
+
+  color: #ffffff;
+}
+
+
+.form-group select option {
+  background: #24211f;
+
+  color: #ffffff;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   AGREEMENT
+========================================= */
+
+.agreement-box {
+  margin-top: 10px;
+
+  margin-bottom: 40px;
+}
+
+
+.agreement {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  color: #ffffff;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+.agreement input {
+  width: 19px;
+  height: 19px;
+
+  accent-color: #c99b5c;
+
+  cursor: pointer;
+}
+
+
+.agreement span {
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   SUBMIT
+========================================= */
+
+.submit-button {
+  width: 340px;
+
+  height: 72px;
+
+  border: none;
+
+  background: #c99b5c;
+
+  color: #171513;
+
+  font-size: 15px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 0 28px;
+
+  transition:
+    transform .3s ease,
+    background .3s ease;
+}
+
+
+.submit-button span {
+  font-size: 25px;
+}
+
+
+.submit-button:hover {
+  transform: translateY(-5px);
+
+  background: #ddb376;
+}
+
+
+/* =========================================
+   INSTAGRAM
+========================================= */
+
+.instagram-section {
+  padding-top: 80px;
+}
+
+
+.instagram-card {
+  border-top: 1px solid rgba(255, 255, 255, .25);
+
+  border-bottom: 1px solid rgba(255, 255, 255, .25);
+
+  padding: 90px 0;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-end;
+
+  gap: 60px;
+}
+
+
+.instagram-card h2 {
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: clamp(60px, 7vw, 100px);
+
+  line-height: .9;
+
+  letter-spacing: -5px;
+
+  color: #ffffff;
+
+  margin-bottom: 35px;
+}
+
+
+.instagram-card p {
+  max-width: 600px;
+
+  color: #ffffff;
+
+  font-size: 20px;
+
+  line-height: 1.65;
+
+  font-weight: 600;
+}
+
+
+.instagram-button {
+  min-width: 270px;
+
+  height: 68px;
+
+  padding: 0 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  text-decoration: none;
+
+  background: #c99b5c;
+
+  color: #171513;
+
+  font-size: 14px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+
+  transition: transform .3s ease;
+}
+
+
+.instagram-button:hover {
+  transform: translateY(-5px);
+}
+
+
+.instagram-button span {
+  font-size: 24px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  min-height: 130px;
+
+  padding: 45px 8vw;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  letter-spacing: 4px;
+
+  font-weight: 800;
+
+  border-top: 1px solid rgba(255, 255, 255, .15);
+}
+
+
+/* =========================================
+   GENERAL ANIMATION
+========================================= */
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .hero {
+    padding: 30px 6vw;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: clamp(70px, 17vw, 120px);
+
+    letter-spacing: -5px;
+  }
+
+  .hero-description {
+    font-size: 18px;
+  }
+
+  .erp-visual {
+    width: 360px;
+    height: 360px;
+
+    margin: 30px auto;
+  }
+
+  .orbit-one {
+    width: 140px;
+    height: 140px;
+  }
+
+  .orbit-two {
+    width: 230px;
+    height: 230px;
+  }
+
+  .orbit-three {
+    width: 330px;
+    height: 330px;
+  }
+
+  .erp-core {
+    width: 115px;
+    height: 115px;
+  }
+
+  .section {
+    padding: 90px 6vw;
+  }
+
+  .about-grid,
+  .registration-heading {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .program-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .fcfs-card {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+
+    padding: 45px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .instagram-card {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .intro-glow {
+    width: 400px;
+    height: 400px;
+  }
+
+  .intro-ring.ring-one {
+    width: 260px;
+    height: 260px;
+  }
+
+  .intro-ring.ring-two {
+    width: 360px;
+    height: 360px;
+  }
+
+  .intro-ring.ring-three {
+    width: 470px;
+    height: 470px;
+  }
+
+  .logo-wrapper {
+    width: 350px;
+    height: 350px;
+  }
+
+  .intro-logo {
+    width: 560px;
+    height: 560px;
+  }
+
+  .hero-top {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+  }
+
+  .hero-button,
+  .submit-button {
+    width: 100%;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+
+  .fcfs-card {
+    padding: 30px;
+  }
+
+  .fcfs-card h2 {
+    font-size: 55px;
+  }
+
+  .registration-heading h2 {
+    font-size: 65px;
+  }
+
+  footer {
+    padding: 35px 6vw;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+}
