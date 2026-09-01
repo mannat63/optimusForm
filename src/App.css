@@ -239,6 +239,414 @@ button {
   }
 }
 
+/* =========================================
+   SUCCESS MODAL
+========================================= */
+
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(12px);
+
+  animation: successOverlayIn 0.3s ease forwards;
+}
+
+.success-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 480px;
+
+  padding: 48px 42px 40px;
+
+  background:
+    radial-gradient(circle at 50% 0%,
+      rgba(197, 164, 93, 0.12),
+      transparent 42%),
+    #101010;
+
+  border: 1px solid rgba(197, 164, 93, 0.35);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    0 0 60px rgba(197, 164, 93, 0.08);
+
+  text-align: center;
+
+  animation: successModalIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* GOLD TOP LINE */
+
+.success-modal::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+
+  height: 2px;
+
+  background: #c5a45d;
+}
+
+/* CLOSE BUTTON */
+
+.success-close {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.success-close:hover {
+  background: rgba(197, 164, 93, 0.12);
+
+  border-color: rgba(197, 164, 93, 0.5);
+
+  color: #c5a45d;
+
+  transform: rotate(90deg);
+}
+
+/* SUCCESS ICON */
+
+.success-icon {
+  width: 72px;
+  height: 72px;
+
+  margin: 0 auto 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(197, 164, 93, 0.5);
+  border-radius: 50%;
+
+  background: rgba(197, 164, 93, 0.08);
+
+  box-shadow:
+    0 0 0 8px rgba(197, 164, 93, 0.025),
+    0 0 35px rgba(197, 164, 93, 0.12);
+
+  animation: successIconIn 0.5s 0.15s ease both;
+}
+
+.success-icon span {
+  color: #c5a45d;
+
+  font-size: 32px;
+  font-weight: 500;
+}
+
+/* CONTENT */
+
+.success-label {
+  display: block;
+
+  margin-bottom: 14px;
+
+  color: #c5a45d;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 2.5px;
+}
+
+.success-content h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 400;
+
+  line-height: 1.05;
+
+  letter-spacing: -1px;
+}
+
+.success-message {
+  max-width: 340px;
+
+  margin: 18px auto 0;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.success-divider {
+  width: 45px;
+  height: 1px;
+
+  margin: 27px auto 23px;
+
+  background: #c5a45d;
+}
+
+.success-question {
+  margin: 0 0 7px;
+
+  color: #ffffff;
+
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.success-instagram-text {
+  max-width: 350px;
+
+  margin: 0 auto;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ACTIONS */
+
+.success-actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 28px;
+}
+
+.success-instagram-button,
+.success-ok-button {
+  width: 100%;
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 1.5px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.success-instagram-button {
+  gap: 12px;
+
+  text-decoration: none;
+
+  background: #c5a45d;
+
+  border: 1px solid #c5a45d;
+
+  color: #101010;
+}
+
+.success-instagram-button span {
+  font-size: 17px;
+}
+
+.success-instagram-button:hover {
+  background: #d4b873;
+
+  border-color: #d4b873;
+
+  transform: translateY(-2px);
+}
+
+.success-ok-button {
+  background: transparent;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.success-ok-button:hover {
+  border-color: rgba(197, 164, 93, 0.5);
+
+  color: #c5a45d;
+
+  background: rgba(197, 164, 93, 0.05);
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes successOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes successModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes successIconIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .success-overlay {
+    padding: 18px;
+  }
+
+  .success-modal {
+    padding: 42px 25px 28px;
+  }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+
+    margin-bottom: 20px;
+  }
+
+  .success-icon span {
+    font-size: 28px;
+  }
+
+  .success-content h2 {
+    font-size: 34px;
+  }
+
+  .success-message {
+    font-size: 13px;
+  }
+}
+
+.success-label {
+  display: block;
+  margin-bottom: 16px;
+
+  color: #c5a45d;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+}
+
+.success-content h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(42px, 6vw, 58px);
+  font-weight: 500;
+
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+}
+
+.success-message {
+  max-width: 390px;
+
+  margin: 22px auto 0;
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 400;
+
+  line-height: 1.6;
+}
+
+.success-question {
+  margin: 0 0 10px;
+
+  color: #ffffff;
+
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.success-instagram-text {
+  max-width: 390px;
+
+  margin: 0 auto;
+
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 400;
+
+  line-height: 1.7;
+}
 
 @keyframes introGlowPulse {
 
@@ -254,6 +662,544 @@ button {
   }
 }
 
+/* =========================================
+   MOBILE INTRO SCREEN FIX
+========================================= */
+
+.intro-screen {
+  background: #0a0a0a !important;
+  background-color: #0a0a0a !important;
+  isolation: isolate;
+}
+
+.intro-screen::before,
+.intro-screen::after {
+  background: transparent;
+}
+
+.intro-glow {
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .intro-screen {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+
+    overflow: hidden;
+
+    isolation: isolate;
+  }
+
+  .intro-screen .intro-glow {
+    opacity: 0.35;
+  }
+
+  .intro-screen .intro-ring {
+    opacity: 0.7;
+  }
+
+  .intro-screen .logo-wrapper {
+    position: relative;
+    z-index: 5;
+  }
+}
+
+/* =========================================
+   OPTIMUS INTRO SCREEN
+========================================= */
+
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #0a0a0a;
+
+  isolation: isolate;
+}
+
+/* Subtle background glow */
+
+.intro-glow {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: radial-gradient(circle,
+      rgba(197, 164, 93, 0.10) 0%,
+      rgba(197, 164, 93, 0.04) 35%,
+      transparent 70%);
+
+  filter: blur(10px);
+
+  pointer-events: none;
+
+  animation: introGlow 4s ease-in-out infinite;
+}
+
+/* =========================================
+   LOGO CONTAINER
+========================================= */
+
+.logo-wrapper {
+  position: relative;
+  z-index: 10;
+
+  width: clamp(190px, 25vw, 290px);
+  aspect-ratio: 1 / 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  animation: logoAppear 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  will-change: transform, opacity;
+}
+
+/* Actual logo */
+
+.intro-logo {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+
+  border-radius: 50%;
+
+  transform: none;
+
+  filter: none;
+
+  animation: logoBreathing 4s ease-in-out 1.2s infinite;
+
+  will-change: transform;
+}
+
+/* =========================================
+   SUBTLE LOGO ANIMATION
+========================================= */
+
+/*
+   Important:
+   No huge zoom.
+   Logo only moves between 1 and 1.035.
+*/
+
+@keyframes logoAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes logoBreathing {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes introGlow {
+  0% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.94);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.03);
+  }
+
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.94);
+  }
+}
+
+/* =========================================
+   INTRO EXIT
+========================================= */
+
+.intro-closing {
+  animation: introExit 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes introExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .intro-screen {
+    width: 100%;
+    height: 100dvh;
+
+    background: #0a0a0a;
+  }
+
+  .logo-wrapper {
+    width: min(64vw, 235px);
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+  }
+
+  .intro-logo {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+  }
+
+  .intro-glow {
+    width: 300px;
+    height: 300px;
+
+    opacity: 0.5;
+  }
+}
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 420px) {
+  .logo-wrapper {
+    width: 210px;
+    height: 210px;
+  }
+
+  .intro-glow {
+    width: 270px;
+    height: 270px;
+  }
+}
+
+/* =========================================
+   FINAL OPTIMUS INTRO FIX
+========================================= */
+
+.intro-screen {
+  position: fixed !important;
+  inset: 0 !important;
+
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  overflow: hidden !important;
+
+  background: #080808 !important;
+
+  transform: none !important;
+  clip-path: none !important;
+  perspective: none !important;
+}
+
+/* Remove any distortion from the logo wrapper */
+
+.intro-screen .logo-wrapper {
+  position: relative !important;
+
+  width: 270px !important;
+  height: 270px !important;
+
+  aspect-ratio: 1 / 1 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border-radius: 50% !important;
+  overflow: hidden !important;
+
+  transform: none !important;
+  rotate: none !important;
+  skew: none !important;
+
+  clip-path: circle(50%) !important;
+  perspective: none !important;
+
+  background: transparent !important;
+
+  animation: optimusLogoEntrance 1.2s ease-out forwards !important;
+}
+
+/* Actual logo */
+
+.intro-screen .intro-logo {
+  display: block !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  object-fit: cover !important;
+  object-position: center !important;
+
+  border-radius: 50% !important;
+
+  transform: none !important;
+  rotate: none !important;
+  skew: none !important;
+  clip-path: circle(50%) !important;
+
+  animation: optimusLogoBreath 4s ease-in-out 1.2s infinite !important;
+
+  filter: none !important;
+}
+
+/* =========================================
+   CLEAN ENTRANCE
+========================================= */
+
+@keyframes optimusLogoEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) !important;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) !important;
+  }
+}
+
+/* VERY subtle movement */
+
+@keyframes optimusLogoBreath {
+  0% {
+    transform: scale(1) !important;
+  }
+
+  50% {
+    transform: scale(1.018) !important;
+  }
+
+  100% {
+    transform: scale(1) !important;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .intro-screen .logo-wrapper {
+    width: 210px !important;
+    height: 210px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .intro-screen .logo-wrapper {
+    width: 185px !important;
+    height: 185px !important;
+  }
+}
+
+/* =========================================
+   FINAL OPTIMUS INTRO FIX
+========================================= */
+
+.intro-screen {
+  position: fixed !important;
+  inset: 0 !important;
+
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  overflow: hidden !important;
+
+  background: #080808 !important;
+
+  transform: none !important;
+  clip-path: none !important;
+  perspective: none !important;
+}
+
+/* Remove any distortion from the logo wrapper */
+
+.intro-screen .logo-wrapper {
+  position: relative !important;
+
+  width: 270px !important;
+  height: 270px !important;
+
+  aspect-ratio: 1 / 1 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border-radius: 50% !important;
+  overflow: hidden !important;
+
+  transform: none !important;
+  rotate: none !important;
+  skew: none !important;
+
+  clip-path: circle(50%) !important;
+  perspective: none !important;
+
+  background: transparent !important;
+
+  animation: optimusLogoEntrance 1.2s ease-out forwards !important;
+}
+
+/* Actual logo */
+
+.intro-screen .intro-logo {
+  display: block !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  object-fit: cover !important;
+  object-position: center !important;
+
+  border-radius: 50% !important;
+
+  transform: none !important;
+  rotate: none !important;
+  skew: none !important;
+  clip-path: circle(50%) !important;
+
+  animation: optimusLogoBreath 4s ease-in-out 1.2s infinite !important;
+
+  filter: none !important;
+}
+
+/* =========================================
+   CLEAN ENTRANCE
+========================================= */
+
+@keyframes optimusLogoEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) !important;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) !important;
+  }
+}
+
+/* VERY subtle movement */
+
+@keyframes optimusLogoBreath {
+  0% {
+    transform: scale(1) !important;
+  }
+
+  50% {
+    transform: scale(1.018) !important;
+  }
+
+  100% {
+    transform: scale(1) !important;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .intro-screen .logo-wrapper {
+    width: 210px !important;
+    height: 210px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .intro-screen .logo-wrapper {
+    width: 185px !important;
+    height: 185px !important;
+  }
+}
 
 @keyframes introRingAppear {
 

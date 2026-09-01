@@ -21,7 +21,6 @@ export default async function handler(req, res) {
     await collection.insertOne({
       name: participant.name,
       roll: participant.roll,
-      division: participant.division,
       email: participant.email,
       programme: participant.programme,
       major: participant.major,
@@ -34,7 +33,6 @@ export default async function handler(req, res) {
       success: true,
       message: "Registration successful",
     });
-
   } catch (error) {
     console.error("Registration error:", error);
 

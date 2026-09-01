@@ -22,6 +22,7 @@ async function connectDB() {
   await client.connect();
 
   const db = client.db("ERP");
+
   collection = db.collection("ERP");
 
   console.log("MongoDB Atlas connected successfully");
@@ -34,7 +35,6 @@ app.post("/register", async (req, res) => {
     await collection.insertOne({
       name: participant.name,
       roll: participant.roll,
-      division: participant.division,
       email: participant.email,
       programme: participant.programme,
       major: participant.major,

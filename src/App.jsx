@@ -6,6 +6,7 @@ import optimusLogo from "./assets/logo.png";
 function App() {
   const [introClosing, setIntroClosing] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     const closeTimer = setTimeout(() => {
@@ -25,7 +26,6 @@ function App() {
   const [formData, setFormData] = useState({
     name: "",
     roll: "",
-    division: "",
     email: "",
     programme: "",
     major: "",
@@ -68,12 +68,13 @@ function App() {
       const result = await response.json();
 
       if (result.success) {
-        alert("Registration successful!");
+        // Show custom success modal
+        setShowSuccess(true);
 
+        // Reset form
         setFormData({
           name: "",
           roll: "",
-          division: "",
           email: "",
           programme: "",
           major: "",
@@ -97,6 +98,84 @@ function App() {
 
   return (
     <div className="app">
+      {/* ================================
+          SUCCESS MODAL
+      ================================= */}
+
+      {showSuccess && (
+        <div className="success-overlay" onClick={() => setShowSuccess(false)}>
+          <div
+            className="success-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="success-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* CLOSE BUTTON */}
+
+            <button
+              className="success-close"
+              onClick={() => setShowSuccess(false)}
+              aria-label="Close"
+            >
+              ×
+            </button>
+
+            {/* SUCCESS ICON */}
+
+            <div className="success-icon">
+              <span>✓</span>
+            </div>
+
+            {/* CONTENT */}
+
+            <div className="success-content">
+              <span className="success-label">OPTIMUS · ERP COURSE</span>
+
+              <h2 id="success-title">
+                Registration
+                <br />
+                Successful.
+              </h2>
+
+              <p className="success-message">
+                Your interest has been registered successfully.
+              </p>
+
+              <div className="success-divider"></div>
+
+              <p className="success-question">Want more details?</p>
+
+              <p className="success-instagram-text">
+                Follow Optimus on Instagram for upcoming updates, announcements
+                and course details.
+              </p>
+
+              {/* ACTIONS */}
+
+              <div className="success-actions">
+                <a
+                  href="https://www.instagram.com/optimus.imnu/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="success-instagram-button"
+                >
+                  VISIT INSTAGRAM
+                  <span>↗</span>
+                </a>
+
+                <button
+                  className="success-ok-button"
+                  onClick={() => setShowSuccess(false)}
+                >
+                  GOT IT
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ================================
           INTRO SCREEN
       ================================= */}
@@ -284,7 +363,7 @@ function App() {
           </div>
 
           <form className="registration-form" onSubmit={handleSubmit}>
-            {/* NAME + ROLL */}
+            {/* NAME + ROLL NUMBER */}
 
             <div className="form-row">
               <div className="form-group">
@@ -314,22 +393,9 @@ function App() {
               </div>
             </div>
 
-            {/* DIVISION + EMAIL */}
+            {/* EMAIL + PROGRAMME */}
 
             <div className="form-row">
-              <div className="form-group">
-                <label>DIVISION</label>
-
-                <input
-                  type="text"
-                  name="division"
-                  placeholder="Enter your division"
-                  value={formData.division}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
               <div className="form-group">
                 <label>EMAIL ID</label>
 
@@ -342,29 +408,37 @@ function App() {
                   required
                 />
               </div>
-            </div>
 
-            {/* PROGRAMME */}
+              <div className="form-group">
+                <label>PROGRAMME</label>
 
-            <div className="form-group">
-              <label>PROGRAMME</label>
+                <select
+                  name="programme"
+                  value={formData.programme}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Select your programme
+                  </option>
 
-              <select
-                name="programme"
-                value={formData.programme}
-                onChange={handleChange}
-                required
-              >
-                <option value="" disabled>
-                  Select your programme
-                </option>
+                  <option value="MBA-FT A">MBA-FT A</option>
 
-                <option value="MBA FT">MBA FT</option>
+                  <option value="MBA-FT B">MBA-FT B</option>
 
-                <option value="HRM">HRM</option>
+                  <option value="MBA-FT C">MBA-FT C</option>
 
-                <option value="FB">FB</option>
-              </select>
+                  <option value="MBA-FT D">MBA-FT D</option>
+
+                  <option value="MBA-FT E">MBA-FT E</option>
+
+                  <option value="MBA-FT F">MBA-FT F</option>
+
+                  <option value="FB">FB</option>
+
+                  <option value="HRM">HRM</option>
+                </select>
+              </div>
             </div>
 
             {/* MAJOR + MINOR */}
