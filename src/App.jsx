@@ -1,12 +1,42 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 import optimusLogo from "./assets/logo.png";
 
+// Paste your Google Apps Script Web App URL here (ends with /exec).
+// See google-sheet/Code.gs for the one-time setup steps.
+const SHEET_WEBAPP_URL =
+  "https://script.google.com/macros/s/AKfycbxXjAZGojodKoH1iwkkfVJmdoZ3t8jC03IqmjB9BiTpqSkEHz9UlLPEzhIPOjbzOc32/exec";
+
+// Where people are sent for further updates.
+const OPTIMUS_INSTAGRAM_URL = "https://www.instagram.com/optimus.imnu/";
+const OPTIMUS_INSTAGRAM_HANDLE = "@optimus.imnu";
+
 function App() {
   const [introClosing, setIntroClosing] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [showFollow, setShowFollow] = useState(false);
+  // "tick" plays the checkmark animation, then flips to "page".
+  const [followPhase, setFollowPhase] = useState("tick");
+  const [submitting, setSubmitting] = useState(false);
+
+  const tickTimer = useRef(null);
+
+  const openFollow = () => {
+    setFollowPhase("tick");
+    setShowFollow(true);
+
+    clearTimeout(tickTimer.current);
+    tickTimer.current = setTimeout(() => setFollowPhase("page"), 1400);
+  };
+
+  const closeFollow = () => {
+    clearTimeout(tickTimer.current);
+    setShowFollow(false);
+    setFollowPhase("tick");
+  };
+
+  useEffect(() => () => clearTimeout(tickTimer.current), []);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -83,41 +113,38 @@ function App() {
     };
 
     try {
-      const API_URL = import.meta.env.DEV
-        ? "http://localhost:5000/register"
-        : "/api/register";
+      setSubmitting(true);
 
-      const response = await fetch(API_URL, {
+      // Apps Script can't send CORS headers on its response, so a normal
+      // fetch would reject when the browser tries to read it. We POST with
+      // mode:"no-cors" (body as text/plain, a "simple" request) — the row is
+      // still written; the response is opaque and can't be read, so a request
+      // that completes without a network error is treated as success.
+      await fetch(SHEET_WEBAPP_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        mode: "no-cors",
         body: JSON.stringify(submissionData),
       });
 
-      const result = await response.json();
+      openFollow();
 
-      if (result.success) {
-        setShowSuccess(true);
+      setFormData({
+        name: "",
+        roll: "",
+        email: "",
+        programme: "",
+        major: "",
+        minor: "",
+        agree: false,
+      });
 
-        setFormData({
-          name: "",
-          roll: "",
-          email: "",
-          programme: "",
-          major: "",
-          minor: "",
-          agree: false,
-        });
-
-        setCustomMajor("");
-        setCustomMinor("");
-      } else {
-        alert(result.message || "Registration failed. Please try again.");
-      }
+      setCustomMajor("");
+      setCustomMinor("");
     } catch (error) {
       console.error("Registration error:", error);
-      alert("Could not connect to the server.");
+      alert("Could not submit your registration. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -130,74 +157,86 @@ function App() {
   return (
     <div className="app">
       {/* ================================
-          SUCCESS MODAL
+          FOLLOW PAGE (after submit)
       ================================= */}
 
-      {showSuccess && (
-        <div className="success-overlay" onClick={() => setShowSuccess(false)}>
-          <div
-            className="success-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="success-title"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="success-close"
-              onClick={() => setShowSuccess(false)}
-              aria-label="Close"
-            >
-              ×
-            </button>
+      {showFollow && (
+        <div
+          className="follow-page"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="follow-title"
+        >
+          <div className="follow-glow"></div>
 
-            <div className="success-icon">
-              <span>✓</span>
+          {followPhase === "tick" ? (
+            <div className="tick-stage">
+              <svg className="tick-svg" viewBox="0 0 100 100">
+                <circle className="tick-circle" cx="50" cy="50" r="46" />
+                <path className="tick-check" d="M28 51 L44 67 L73 34" />
+              </svg>
             </div>
+          ) : (
+            <>
+              <button
+                className="follow-close"
+                onClick={closeFollow}
+                aria-label="Close"
+              >
+                ×
+              </button>
 
-            <div className="success-content">
-              <span className="success-label">OPTIMUS · ERP COURSE</span>
+              <div className="follow-inner">
+                <div className="follow-logo-ring">
+                  <img src={optimusLogo} alt="Optimus" className="follow-logo" />
+                </div>
 
-              <h2 id="success-title">
-                Don't miss
-                <br />
-                your seat!
-              </h2>
+                <h2 id="follow-title" className="follow-headline">
+                  REGISTRATION
+                  <br />
+                  SUCCESSFUL
+                </h2>
 
-              <p className="success-message">
-                Seats are strictly limited and allotted on a first-come,
-                first-served basis. Final seat release and registration links
-                will go live exclusively on our Instagram.
-              </p>
+                <div className="follow-tick">
+                  <svg viewBox="0 0 52 52">
+                    <circle cx="26" cy="26" r="24" />
+                    <path d="M16 27 L23 34 L37 19" />
+                  </svg>
+                </div>
 
-              <div className="success-divider"></div>
+                <p className="follow-message">
+                  Your spot is saved — but{" "}
+                  <strong>
+                    every update from here is shared only on our Instagram
+                  </strong>
+                  : seat releases, registration links and announcements.
+                  Nowhere else.
+                </p>
 
-              <p className="success-question">Stay updated with Optimus.</p>
+                <p className="follow-warning">
+                  Don't follow, and you'll miss your seat.
+                </p>
 
-              <p className="success-instagram-text">
-                Follow us on Instagram for the final seat release, registration
-                links and important course updates.
-              </p>
-
-              <div className="success-actions">
                 <a
-                  href="https://www.instagram.com/optimus.imnu/"
+                  href={OPTIMUS_INSTAGRAM_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="success-instagram-button"
+                  className="follow-button"
                 >
-                  FOLLOW TO SECURE YOUR SEAT
+                  FOLLOW OPTIMUS ON INSTAGRAM
                   <span>↗</span>
                 </a>
 
-                <button
-                  className="success-ok-button"
-                  onClick={() => setShowSuccess(false)}
-                >
-                  OK
+                <span className="follow-handle">
+                  {OPTIMUS_INSTAGRAM_HANDLE}
+                </span>
+
+                <button className="follow-dismiss" onClick={closeFollow}>
+                  I've followed — close
                 </button>
               </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       )}
 
@@ -587,8 +626,12 @@ function App() {
 
             {/* SUBMIT */}
 
-            <button type="submit" className="submit-button">
-              SUBMIT REGISTRATION
+            <button
+              type="submit"
+              className="submit-button"
+              disabled={submitting}
+            >
+              {submitting ? "SUBMITTING…" : "SUBMIT REGISTRATION"}
               <span>↗</span>
             </button>
           </form>
