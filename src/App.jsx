@@ -520,7 +520,7 @@ function App() {
                   <input
                     type="text"
                     name="email"
-                    placeholder="e.g. 23btm035"
+                    placeholder="e.g. 26MBA525"
                     value={formData.email}
                     onChange={handleEmailChange}
                     autoCapitalize="none"
