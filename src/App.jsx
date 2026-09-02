@@ -8,6 +8,19 @@ function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    roll: "",
+    email: "",
+    programme: "",
+    major: "",
+    minor: "",
+    agree: false,
+  });
+
+  const [customMajor, setCustomMajor] = useState("");
+  const [customMinor, setCustomMinor] = useState("");
+
   useEffect(() => {
     const closeTimer = setTimeout(() => {
       setIntroClosing(true);
@@ -23,23 +36,22 @@ function App() {
     };
   }, []);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    roll: "",
-    email: "",
-    programme: "",
-    major: "",
-    minor: "",
-    agree: false,
-  });
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: type === "checkbox" ? checked : value,
-    });
+    }));
+
+    // Clear custom field when switching away from Other
+    if (name === "major" && value !== "Other") {
+      setCustomMajor("");
+    }
+
+    if (name === "minor" && value !== "Other") {
+      setCustomMinor("");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -50,9 +62,27 @@ function App() {
       return;
     }
 
+    // Make sure custom values are entered when Other is selected
+    if (formData.major === "Other" && !customMajor.trim()) {
+      alert("Please enter your intended major.");
+      return;
+    }
+
+    if (formData.minor === "Other" && !customMinor.trim()) {
+      alert("Please enter your intended minor.");
+      return;
+    }
+
+    // Final values that will actually be sent to MongoDB
+    const submissionData = {
+      ...formData,
+
+      major: formData.major === "Other" ? customMajor.trim() : formData.major,
+
+      minor: formData.minor === "Other" ? customMinor.trim() : formData.minor,
+    };
+
     try {
-      // Local development → Express server
-      // Vercel deployment → Vercel API
       const API_URL = import.meta.env.DEV
         ? "http://localhost:5000/register"
         : "/api/register";
@@ -62,16 +92,14 @@ function App() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submissionData),
       });
 
       const result = await response.json();
 
       if (result.success) {
-        // Show custom success modal
         setShowSuccess(true);
 
-        // Reset form
         setFormData({
           name: "",
           roll: "",
@@ -81,6 +109,9 @@ function App() {
           minor: "",
           agree: false,
         });
+
+        setCustomMajor("");
+        setCustomMinor("");
       } else {
         alert(result.message || "Registration failed. Please try again.");
       }
@@ -111,8 +142,6 @@ function App() {
             aria-labelledby="success-title"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* CLOSE BUTTON */}
-
             <button
               className="success-close"
               onClick={() => setShowSuccess(false)}
@@ -121,37 +150,33 @@ function App() {
               ×
             </button>
 
-            {/* SUCCESS ICON */}
-
             <div className="success-icon">
               <span>✓</span>
             </div>
-
-            {/* CONTENT */}
 
             <div className="success-content">
               <span className="success-label">OPTIMUS · ERP COURSE</span>
 
               <h2 id="success-title">
-                Registration
+                Don't miss
                 <br />
-                Successful.
+                your seat!
               </h2>
 
               <p className="success-message">
-                Your interest has been registered successfully.
+                Seats are strictly limited and allotted on a first-come,
+                first-served basis. Final seat release and registration links
+                will go live exclusively on our Instagram.
               </p>
 
               <div className="success-divider"></div>
 
-              <p className="success-question">Want more details?</p>
+              <p className="success-question">Stay updated with Optimus.</p>
 
               <p className="success-instagram-text">
-                Follow Optimus on Instagram for upcoming updates, announcements
-                and course details.
+                Follow us on Instagram for the final seat release, registration
+                links and important course updates.
               </p>
-
-              {/* ACTIONS */}
 
               <div className="success-actions">
                 <a
@@ -160,7 +185,7 @@ function App() {
                   rel="noreferrer"
                   className="success-instagram-button"
                 >
-                  VISIT INSTAGRAM
+                  FOLLOW TO SECURE YOUR SEAT
                   <span>↗</span>
                 </a>
 
@@ -168,7 +193,7 @@ function App() {
                   className="success-ok-button"
                   onClick={() => setShowSuccess(false)}
                 >
-                  GOT IT
+                  OK
                 </button>
               </div>
             </div>
@@ -227,7 +252,7 @@ function App() {
 
               <button className="hero-button" onClick={scrollToForm}>
                 REGISTER YOUR INTEREST
-                <span>↗</span>
+                <span>↓</span>
               </button>
             </div>
 
@@ -257,22 +282,26 @@ function App() {
         </section>
 
         {/* ================================
-            ABOUT PROGRAM
+            WHAT YOU'LL LEARN
         ================================= */}
 
         <section className="about section">
-          <div className="section-label">01 / ABOUT THE PROGRAM</div>
+          <div className="section-label">01 / WHAT YOU'LL LEARN</div>
 
           <div className="about-grid">
             <div>
-              <h2>ERP brings different functions of a business together.</h2>
+              <h2>
+                What you'll
+                <br />
+                learn.
+              </h2>
             </div>
 
             <div>
               <p className="section-text">
-                This course offers an opportunity to understand the systems,
-                processes and thinking that enable organizations to operate
-                efficiently.
+                Gain deeper insights into Enterprise Systems and Enterprise
+                Resource Planning solutions and understand their role in modern
+                organizations.
               </p>
             </div>
           </div>
@@ -284,30 +313,41 @@ function App() {
               <h3>UNDERSTAND</h3>
 
               <p>
-                Learn how enterprise systems connect different business
-                functions.
+                Gain deeper insights into Enterprise Systems and Enterprise
+                Resource Planning (ERP) solutions.
               </p>
             </div>
 
             <div className="program-card">
               <span className="card-number">02</span>
 
-              <h3>EXPERIENCE</h3>
+              <h3>IMPLEMENT</h3>
 
               <p>
-                Gain practical exposure to real-world ERP processes and
-                workflows.
+                Build an understanding of the managerial considerations involved
+                in selecting and implementing ERP systems.
               </p>
             </div>
 
             <div className="program-card">
               <span className="card-number">03</span>
 
-              <h3>GROW</h3>
+              <h3>CREATE VALUE</h3>
 
               <p>
-                Build knowledge that can help you understand modern business
-                operations.
+                Explore the value ERPs bring to organizations and why they are
+                critical for business success.
+              </p>
+            </div>
+
+            <div className="program-card">
+              <span className="card-number">04</span>
+
+              <h3>APPLY</h3>
+
+              <p>
+                Acquire practical knowledge to tackle real-world challenges
+                related to ERP adoption and usage.
               </p>
             </div>
           </div>
@@ -363,7 +403,7 @@ function App() {
           </div>
 
           <form className="registration-form" onSubmit={handleSubmit}>
-            {/* NAME + ROLL NUMBER */}
+            {/* NAME + ROLL */}
 
             <div className="form-row">
               <div className="form-group">
@@ -434,6 +474,8 @@ function App() {
 
                   <option value="MBA-FT F">MBA-FT F</option>
 
+                  <option value="IMBA">IMBA</option>
+
                   <option value="FB">FB</option>
 
                   <option value="HRM">HRM</option>
@@ -444,30 +486,84 @@ function App() {
             {/* MAJOR + MINOR */}
 
             <div className="form-row">
+              {/* MAJOR */}
+
               <div className="form-group">
                 <label>INTENDED MAJOR</label>
 
-                <input
-                  type="text"
+                <select
                   name="major"
-                  placeholder="Enter your intended major"
                   value={formData.major}
                   onChange={handleChange}
                   required
-                />
+                >
+                  <option value="" disabled>
+                    Select your intended major
+                  </option>
+
+                  <option value="Marketing">Marketing</option>
+
+                  <option value="Finance">Finance</option>
+
+                  <option value="Operations">Operations</option>
+
+                  <option value="DnA">DnA</option>
+
+                  <option value="Other">Other</option>
+                </select>
+
+                {/* CUSTOM MAJOR FIELD */}
+
+                {formData.major === "Other" && (
+                  <input
+                    type="text"
+                    name="customMajor"
+                    placeholder="Enter your intended major"
+                    value={customMajor}
+                    onChange={(e) => setCustomMajor(e.target.value)}
+                    required
+                  />
+                )}
               </div>
+
+              {/* MINOR */}
 
               <div className="form-group">
                 <label>INTENDED MINOR</label>
 
-                <input
-                  type="text"
+                <select
                   name="minor"
-                  placeholder="Enter your intended minor"
                   value={formData.minor}
                   onChange={handleChange}
                   required
-                />
+                >
+                  <option value="" disabled>
+                    Select your intended minor
+                  </option>
+
+                  <option value="Marketing">Marketing</option>
+
+                  <option value="Finance">Finance</option>
+
+                  <option value="Operations">Operations</option>
+
+                  <option value="DnA">DnA</option>
+
+                  <option value="Other">Other</option>
+                </select>
+
+                {/* CUSTOM MINOR FIELD */}
+
+                {formData.minor === "Other" && (
+                  <input
+                    type="text"
+                    name="customMinor"
+                    placeholder="Enter your intended minor"
+                    value={customMinor}
+                    onChange={(e) => setCustomMinor(e.target.value)}
+                    required
+                  />
+                )}
               </div>
             </div>
 

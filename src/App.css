@@ -1201,6 +1201,608 @@ button {
   }
 }
 
+/* =========================================================
+   WHAT YOU'LL LEARN — 2 CARDS PER ROW
+========================================================= */
+
+.program-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Keep all cards equal height */
+.program-card {
+  min-height: 360px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .program-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .program-card {
+    min-height: 320px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .program-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .program-card {
+    min-height: 280px;
+  }
+}
+
+/* =========================================================
+   FINAL FIX — SUCCESS POPUP + LEARN CARDS
+   ADD THIS AT THE VERY BOTTOM OF App.css
+========================================================= */
+
+
+/* =========================================================
+   1. SUCCESS POPUP — DESKTOP
+========================================================= */
+
+.success-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100dvh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  z-index: 9999;
+}
+
+
+.success-modal {
+  position: relative;
+
+  width: min(680px, 100%);
+
+  max-height: calc(100dvh - 60px);
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  margin: auto;
+
+  padding: 55px 60px 50px;
+}
+
+
+/* =========================================================
+   2. SUCCESS POPUP — TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .success-overlay {
+    padding: 25px;
+  }
+
+  .success-modal {
+    width: min(620px, 100%);
+
+    max-height: calc(100dvh - 50px);
+
+    padding: 45px 45px 40px;
+  }
+}
+
+
+/* =========================================================
+   3. SUCCESS POPUP — MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .success-overlay {
+    align-items: flex-start;
+
+    padding: 20px 16px;
+
+    overflow-y: auto;
+  }
+
+  .success-modal {
+    width: 100%;
+
+    max-width: 100%;
+
+    max-height: calc(100dvh - 40px);
+
+    margin: auto 0;
+
+    padding: 38px 24px 24px;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+
+    border-radius: 0;
+  }
+
+
+  /* Close button */
+
+  .success-close {
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    width: 42px;
+    height: 42px;
+  }
+
+
+  /* Check icon */
+
+  .success-icon {
+    width: 82px;
+    height: 82px;
+
+    margin: 0 auto 25px;
+  }
+
+
+  /* Small label */
+
+  .success-label {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+  }
+
+
+  /* Main heading */
+
+  .success-content h2 {
+    font-size: clamp(48px, 14vw, 68px);
+
+    line-height: 0.95;
+
+    letter-spacing: -2px;
+
+    margin: 18px 0 28px;
+  }
+
+
+  /* Main message */
+
+  .success-message {
+    font-size: 16px;
+
+    line-height: 1.55;
+
+    margin-bottom: 28px;
+  }
+
+
+  /* Divider */
+
+  .success-divider {
+    margin: 25px auto;
+  }
+
+
+  /* Stay updated */
+
+  .success-question {
+    font-size: 22px;
+
+    line-height: 1.2;
+
+    margin-bottom: 12px;
+  }
+
+
+  .success-instagram-text {
+    font-size: 14px;
+
+    line-height: 1.55;
+
+    margin-bottom: 25px;
+  }
+
+
+  /* Buttons */
+
+  .success-actions {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+
+  .success-instagram-button,
+  .success-ok-button {
+    width: 100%;
+
+    min-height: 60px;
+
+    box-sizing: border-box;
+  }
+}
+
+
+/* =========================================================
+   4. VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .success-overlay {
+    padding: 10px;
+  }
+
+  .success-modal {
+    max-height: calc(100dvh - 20px);
+
+    padding: 32px 20px 20px;
+  }
+
+  .success-icon {
+    width: 68px;
+    height: 68px;
+
+    margin-bottom: 20px;
+  }
+
+  .success-content h2 {
+    font-size: 44px;
+
+    margin-top: 15px;
+    margin-bottom: 22px;
+  }
+
+  .success-message {
+    font-size: 14px;
+
+    line-height: 1.5;
+  }
+
+  .success-question {
+    font-size: 19px;
+  }
+
+  .success-instagram-text {
+    font-size: 13px;
+  }
+
+  .success-instagram-button,
+  .success-ok-button {
+    min-height: 56px;
+  }
+}
+
+
+/* =========================================================
+   5. WHAT YOU'LL LEARN — FORCE 2 × 2
+========================================================= */
+
+.program-cards {
+  width: 100% !important;
+
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr)) !important;
+
+  gap: 24px !important;
+
+  box-sizing: border-box;
+}
+
+
+.program-card {
+  width: 100% !important;
+
+  min-width: 0 !important;
+
+  min-height: 360px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   6. TABLET — STILL 2 × 2
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .program-cards {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+
+    gap: 18px !important;
+  }
+
+  .program-card {
+    min-height: 320px;
+  }
+}
+
+
+/* =========================================================
+   7. MOBILE — ONE PER ROW
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .program-cards {
+    width: 100% !important;
+
+    grid-template-columns:
+      minmax(0, 1fr) !important;
+
+    gap: 16px !important;
+  }
+
+  .program-card {
+    width: 100% !important;
+
+    min-height: 280px;
+  }
+}
+
+/* =========================================================
+   SUCCESS POPUP — NO SCROLL
+========================================================= */
+
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  z-index: 9999;
+}
+
+.success-modal {
+  position: relative;
+
+  width: min(680px, 100%);
+
+  max-height: calc(100dvh - 30px);
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  padding: 45px 55px 40px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .success-overlay {
+    padding: 10px;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .success-modal {
+    width: 100%;
+    max-width: 100%;
+
+    height: auto;
+    max-height: calc(100dvh - 20px);
+
+    padding: 25px 20px 20px;
+
+    overflow: hidden;
+  }
+
+  /* Close */
+
+  .success-close {
+    position: absolute;
+
+    top: 7px;
+    right: 7px;
+
+    width: 38px;
+    height: 38px;
+
+    font-size: 24px;
+  }
+
+  /* Check */
+
+  .success-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+  }
+
+  /* Label */
+
+  .success-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+  }
+
+  /* Heading */
+
+  .success-content h2 {
+    font-size: clamp(42px, 12vw, 58px);
+
+    line-height: 0.92;
+
+    letter-spacing: -1.5px;
+
+    margin: 12px 0 18px;
+  }
+
+  /* Main paragraph */
+
+  .success-message {
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    margin: 0 auto 18px;
+
+    max-width: 500px;
+  }
+
+  /* Divider */
+
+  .success-divider {
+    margin: 15px auto;
+  }
+
+  /* Stay updated */
+
+  .success-question {
+    font-size: 19px;
+
+    line-height: 1.15;
+
+    margin: 0 0 8px;
+  }
+
+  .success-instagram-text {
+    font-size: 12px;
+
+    line-height: 1.4;
+
+    margin: 0 auto 16px;
+
+    max-width: 500px;
+  }
+
+  /* Buttons */
+
+  .success-actions {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+  }
+
+  .success-instagram-button,
+  .success-ok-button {
+    width: 100%;
+
+    min-height: 48px;
+
+    height: 48px;
+
+    box-sizing: border-box;
+
+    font-size: 11px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .success-modal {
+    padding: 20px 16px 16px;
+  }
+
+  .success-icon {
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 12px;
+  }
+
+  .success-content h2 {
+    font-size: 39px;
+
+    margin: 10px 0 15px;
+  }
+
+  .success-message {
+    font-size: 12.5px;
+
+    line-height: 1.35;
+
+    margin-bottom: 14px;
+  }
+
+  .success-divider {
+    margin: 12px auto;
+  }
+
+  .success-question {
+    font-size: 17px;
+  }
+
+  .success-instagram-text {
+    font-size: 11.5px;
+
+    line-height: 1.35;
+
+    margin-bottom: 13px;
+  }
+
+  .success-instagram-button,
+  .success-ok-button {
+    height: 44px;
+    min-height: 44px;
+
+    font-size: 10px;
+  }
+}
+
 @keyframes introRingAppear {
 
   0% {
