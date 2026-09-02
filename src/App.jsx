@@ -12,6 +12,10 @@ const SHEET_WEBAPP_URL =
 const OPTIMUS_INSTAGRAM_URL = "https://www.instagram.com/optimus.imnu/";
 const OPTIMUS_INSTAGRAM_HANDLE = "@optimus.imnu";
 
+// Only Nirma university email IDs are allowed. Users type the part before the
+// "@"; this suffix is fixed, shown to them, and appended before saving.
+const EMAIL_SUFFIX = "@nirmauni.ac.in";
+
 function App() {
   const [introClosing, setIntroClosing] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
@@ -84,6 +88,17 @@ function App() {
     }
   };
 
+  const handleEmailChange = (e) => {
+    // Keep only the part before "@" so the suffix can never be typed twice
+    // (handles pastes of a full "id@nirmauni.ac.in" too). No spaces.
+    const local = e.target.value.split("@")[0].replace(/\s/g, "");
+
+    setFormData((prev) => ({
+      ...prev,
+      email: local,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -103,13 +118,36 @@ function App() {
       return;
     }
 
-    // Final values that will actually be sent to MongoDB
+    // Nirma email ID is required
+    const emailLocal = formData.email.trim();
+
+    if (!emailLocal) {
+      alert("Please enter your Nirma email ID.");
+      return;
+    }
+
+    // Resolve final major / minor (accounting for the "Other" option)
+    const finalMajor =
+      formData.major === "Other" ? customMajor.trim() : formData.major;
+
+    const finalMinor =
+      formData.minor === "Other" ? customMinor.trim() : formData.minor;
+
+    // Major and minor must be different
+    if (finalMajor.toLowerCase() === finalMinor.toLowerCase()) {
+      alert("Your intended major and minor must be different.");
+      return;
+    }
+
+    // Final values that will actually be saved to the sheet
     const submissionData = {
       ...formData,
 
-      major: formData.major === "Other" ? customMajor.trim() : formData.major,
+      email: `${emailLocal}${EMAIL_SUFFIX}`,
 
-      minor: formData.minor === "Other" ? customMinor.trim() : formData.minor,
+      major: finalMajor,
+
+      minor: finalMinor,
     };
 
     try {
@@ -478,14 +516,26 @@ function App() {
               <div className="form-group">
                 <label>EMAIL ID</label>
 
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email address"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="email-input-row">
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder="e.g. 23btm035"
+                    value={formData.email}
+                    onChange={handleEmailChange}
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    spellCheck="false"
+                    required
+                  />
+
+                  <span className="email-suffix">{EMAIL_SUFFIX}</span>
+                </div>
+
+                <p className="field-hint">
+                  Use your Nirma email ID only — enter just the part before{" "}
+                  {EMAIL_SUFFIX}
+                </p>
               </div>
 
               <div className="form-group">
