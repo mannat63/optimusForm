@@ -244,15 +244,14 @@ function App() {
 
                 <p className="follow-message">
                   Your spot is saved — but{" "}
-                  <strong>
-                    every update from here is shared only on our Instagram
-                  </strong>
-                  : seat releases, registration links and announcements.
-                  Nowhere else.
+                  <strong>only 60 seats are available.</strong> Selection is{" "}
+                  <strong>first come, first serve.</strong> All seat updates,
+                  registration links &amp; announcements will be shared{" "}
+                  <strong>only on Instagram.</strong>
                 </p>
 
                 <p className="follow-warning">
-                  Don't follow, and you'll miss your seat.
+                  60 seats. Don't miss yours. 🔥
                 </p>
 
                 <a
