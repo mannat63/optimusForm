@@ -3188,16 +3188,17 @@ footer {
   z-index: 10000;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   height: 100vh;
   height: 100dvh;
 
-  padding: 20px;
+  padding: 20px 20px 0;
   box-sizing: border-box;
 
-  overflow: hidden;
+  overflow-y: auto;
 
   background:
     radial-gradient(circle at 50% 8%,
@@ -3206,6 +3207,20 @@ footer {
     #1a1917;
 
   animation: followPageIn 0.4s ease forwards;
+}
+
+/* Content fills the space above the footer and stays centred */
+.tick-stage,
+.follow-page .follow-inner {
+  flex: 1 1 auto;
+}
+
+.follow-page .site-footer {
+  width: 100%;
+  align-self: stretch;
+  flex: none;
+  background: transparent;
+  margin-top: 12px;
 }
 
 .follow-glow {
@@ -3543,5 +3558,239 @@ footer {
 
   .follow-headline {
     font-size: clamp(28px, 7vw, 44px);
+  }
+}
+
+
+/* =========================================================
+   SITE FOOTER
+========================================================= */
+
+.site-footer {
+  display: block;
+  min-height: 0;
+
+  width: 100%;
+
+  border-top: 1px solid rgba(201, 155, 92, 0.28);
+
+  background: #1b1a18;
+
+  color: #ffffff;
+
+  font-family: "DM Sans", sans-serif;
+  letter-spacing: normal;
+}
+
+.footer-main {
+  max-width: 1180px;
+  margin: 0 auto;
+
+  padding: 46px 8vw 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-heading {
+  display: block;
+
+  margin-bottom: 18px;
+
+  color: #c99b5c;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+/* LEFT — coordinators */
+
+.footer-spocs {
+  min-width: 250px;
+}
+
+.spoc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.spoc {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 28px;
+}
+
+.spoc-name {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.spoc-num {
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  font-variant-numeric: tabular-nums;
+
+  transition: color 0.2s ease;
+}
+
+.spoc-num:hover {
+  color: #c99b5c;
+}
+
+/* RIGHT — brand + social */
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 18px;
+
+  text-align: right;
+}
+
+.footer-brand-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-logo {
+  width: 52px;
+  height: 52px;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 1px solid rgba(201, 155, 92, 0.45);
+  box-shadow: 0 0 22px rgba(201, 155, 92, 0.12);
+}
+
+.footer-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.12;
+}
+
+.footer-brand-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.footer-brand-sub {
+  color: #c99b5c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.footer-insta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.footer-insta svg {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-insta:hover {
+  color: #c99b5c;
+}
+
+/* BOTTOM bar */
+
+.footer-bottom {
+  padding: 16px 8vw;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+
+/* Footer inside the follow (final) page — slimmer, transparent */
+
+.follow-page .footer-main {
+  padding: 20px 4vw 14px;
+}
+
+.follow-page .footer-bottom {
+  padding: 12px 4vw 14px;
+}
+
+
+/* =========================================================
+   FOOTER — TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 720px) {
+  .footer-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 34px;
+
+    padding: 38px 7vw 26px;
+  }
+
+  .footer-brand {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer-spocs {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .spoc {
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+  }
+
+  .follow-page .footer-main {
+    gap: 22px;
+    padding: 18px 6vw 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .spoc {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .spoc-num {
+    color: #c99b5c;
   }
 }

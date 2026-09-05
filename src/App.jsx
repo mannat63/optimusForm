@@ -16,6 +16,80 @@ const OPTIMUS_INSTAGRAM_HANDLE = "@optimus.imnu";
 // "@"; this suffix is fixed, shown to them, and appended before saving.
 const EMAIL_SUFFIX = "@nirmauni.ac.in";
 
+// Student points of contact shown in the footer.
+const SPOCS = [
+  { name: "Ritik Jagwani", display: "+91 78790 18640", tel: "+917879018640" },
+  { name: "Garima Agarwal", display: "+91 79086 15879", tel: "+917908615879" },
+];
+
+function InstagramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect
+        x="2.5"
+        y="2.5"
+        width="19"
+        height="19"
+        rx="5.5"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
+    </svg>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="site-footer">
+      <div className="footer-main">
+        {/* LEFT — student coordinators */}
+        <div className="footer-spocs">
+          <span className="footer-heading">STUDENT COORDINATORS</span>
+
+          <div className="spoc-list">
+            {SPOCS.map((s) => (
+              <div className="spoc" key={s.tel}>
+                <span className="spoc-name">{s.name}</span>
+                <a className="spoc-num" href={`tel:${s.tel}`}>
+                  {s.display}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT — brand + social */}
+        <div className="footer-brand">
+          <div className="footer-brand-top">
+            <img src={optimusLogo} alt="Optimus" className="footer-logo" />
+
+            <div className="footer-brand-text">
+              <span className="footer-brand-name">OPTIMUS</span>
+              <span className="footer-brand-sub">ERP COURSE</span>
+            </div>
+          </div>
+
+          <a
+            className="footer-insta"
+            href={OPTIMUS_INSTAGRAM_URL}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <InstagramIcon />
+            <span>{OPTIMUS_INSTAGRAM_HANDLE}</span>
+          </a>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        © 2026 Optimus · ERP Course
+      </div>
+    </footer>
+  );
+}
+
 function App() {
   const [introClosing, setIntroClosing] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
@@ -261,6 +335,8 @@ function App() {
                   {OPTIMUS_INSTAGRAM_HANDLE}
                 </span>
               </div>
+
+              <SiteFooter />
             </>
           )}
         </div>
@@ -674,6 +750,8 @@ function App() {
             </button>
           </form>
         </section>
+
+        <SiteFooter />
       </main>
     </div>
   );
