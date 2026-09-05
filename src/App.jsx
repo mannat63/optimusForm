@@ -230,9 +230,9 @@ function App() {
                 </div>
 
                 <h2 id="follow-title" className="follow-headline">
-                  REGISTRATION
+                  INTEREST
                   <br />
-                  SUCCESSFUL
+                  REGISTERED
                 </h2>
 
                 <div className="follow-tick">
@@ -243,15 +243,8 @@ function App() {
                 </div>
 
                 <p className="follow-message">
-                  Your spot is saved — but{" "}
-                  <strong>only 60 seats are available.</strong> Selection is{" "}
-                  <strong>first come, first serve.</strong> All seat updates,
-                  registration links &amp; announcements will be shared{" "}
-                  <strong>only on Instagram.</strong>
-                </p>
-
-                <p className="follow-warning">
-                  60 seats. Don't miss yours. 🔥
+                  Your interest is recorded successfully. Follow us on Instagram
+                  to stay tuned with announcements and registrations.
                 </p>
 
                 <a
@@ -267,10 +260,6 @@ function App() {
                 <span className="follow-handle">
                   {OPTIMUS_INSTAGRAM_HANDLE}
                 </span>
-
-                <button className="follow-dismiss" onClick={closeFollow}>
-                  I've followed — close
-                </button>
               </div>
             </>
           )}
@@ -362,7 +351,7 @@ function App() {
         ================================= */}
 
         <section className="about section">
-          <div className="section-label">01 / WHAT YOU'LL LEARN</div>
+          <div className="section-label">01 / OVERVIEW</div>
 
           <div className="about-grid">
             <div>
@@ -376,7 +365,7 @@ function App() {
             <div>
               <p className="section-text">
                 Go beyond theory and discover how ERP systems bring a company's
-                operations together — and why the ability to work with them has
+                operations together and why the ability to work with them has
                 become a defining skill for the managers of tomorrow.
               </p>
             </div>
@@ -447,8 +436,8 @@ function App() {
 
             <div className="fcfs-right">
               <p>
-                Registrations will be considered on a first-come, first-served
-                basis.
+                The sooner you express your interest, the better your chances of
+                making the list. Don't wait around.
               </p>
 
               <div className="fcfs-line"></div>
@@ -483,7 +472,7 @@ function App() {
 
             <div className="form-row">
               <div className="form-group">
-                <label>NAME</label>
+                <label>FULL NAME</label>
 
                 <input
                   type="text"
@@ -501,7 +490,7 @@ function App() {
                 <input
                   type="text"
                   name="roll"
-                  placeholder="Enter your roll number"
+                  placeholder="e.g. 26MBA525"
                   value={formData.roll}
                   onChange={handleChange}
                   required
@@ -680,43 +669,10 @@ function App() {
               className="submit-button"
               disabled={submitting}
             >
-              {submitting ? "SUBMITTING…" : "SUBMIT REGISTRATION"}
+              {submitting ? "SUBMITTING…" : "SUBMIT"}
               <span>↗</span>
             </button>
           </form>
-        </section>
-
-        {/* ================================
-            INSTAGRAM
-        ================================= */}
-
-        <section className="instagram-section section">
-          <div className="instagram-card">
-            <div>
-              <span className="section-label">03 / STAY UPDATED</span>
-
-              <h2>
-                More details
-                <br />
-                coming soon.
-              </h2>
-
-              <p>
-                Further updates and opportunities related to the ERP course will
-                be floated through our Instagram.
-              </p>
-            </div>
-
-            <a
-              href="https://www.instagram.com/optimus.imnu/"
-              target="_blank"
-              rel="noreferrer"
-              className="instagram-button"
-            >
-              FOLLOW OPTIMUS
-              <span>↗</span>
-            </a>
-          </div>
         </section>
       </main>
     </div>

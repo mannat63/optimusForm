@@ -2057,9 +2057,10 @@ button {
 ========================================= */
 
 .hero-button {
-  width: 290px;
+  width: 430px;
+  max-width: 100%;
 
-  height: 60px;
+  height: 72px;
 
   border: none;
 
@@ -2067,11 +2068,13 @@ button {
 
   color: #171513;
 
-  font-size: 15px;
+  font-size: 18px;
 
   font-weight: 800;
 
-  letter-spacing: 1.2px;
+  letter-spacing: 1.4px;
+
+  white-space: nowrap;
 
   display: flex;
 
@@ -2079,7 +2082,9 @@ button {
 
   justify-content: space-between;
 
-  padding: 0 28px;
+  gap: 20px;
+
+  padding: 0 32px;
 
   transition:
     transform .3s ease,
@@ -3051,6 +3056,18 @@ footer {
   .hero-button,
   .submit-button {
     width: 100%;
+  }
+
+  .hero-button {
+    height: 64px;
+    font-size: clamp(13px, 4vw, 16px);
+    letter-spacing: 1px;
+    padding: 0 22px;
+    gap: 12px;
+  }
+
+  .hero-button span {
+    font-size: 22px;
   }
 
   .scroll-indicator {
