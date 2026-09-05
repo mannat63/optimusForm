@@ -375,9 +375,9 @@ function App() {
 
             <div>
               <p className="section-text">
-                Gain deeper insights into Enterprise Systems and Enterprise
-                Resource Planning solutions and understand their role in modern
-                organizations.
+                Go beyond theory and discover how ERP systems bring a company's
+                operations together — and why the ability to work with them has
+                become a defining skill for the managers of tomorrow.
               </p>
             </div>
           </div>
