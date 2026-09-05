@@ -3563,21 +3563,20 @@ footer {
 
 
 /* =========================================================
-   SITE FOOTER
+   SITE FOOTER — compact
 ========================================================= */
 
 .site-footer {
   display: block;
   min-height: 0;
-
   width: 100%;
+  margin: 0;
+  padding: 0;
 
-  border-top: 1px solid rgba(201, 155, 92, 0.28);
-
+  border-top: 1px solid rgba(201, 155, 92, 0.22);
   background: #1b1a18;
 
   color: #ffffff;
-
   font-family: "DM Sans", sans-serif;
   letter-spacing: normal;
 }
@@ -3586,62 +3585,90 @@ footer {
   max-width: 1180px;
   margin: 0 auto;
 
-  padding: 46px 8vw 30px;
+  padding: 28px 8vw 22px;
 
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
+  gap: 24px 40px;
   flex-wrap: wrap;
 }
 
-.footer-heading {
-  display: block;
+/* brand */
 
-  margin-bottom: 18px;
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-  color: #c99b5c;
+.footer-logo {
+  width: 42px;
+  height: 42px;
 
-  font-size: 12px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 1px solid rgba(201, 155, 92, 0.4);
+}
+
+.footer-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.footer-brand-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 18px;
   font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.footer-brand-sub {
+  color: #c99b5c;
+  font-size: 10px;
+  font-weight: 600;
   letter-spacing: 2.5px;
 }
 
-/* LEFT — coordinators */
+/* coordinators */
 
-.footer-spocs {
-  min-width: 250px;
+.footer-heading {
+  display: block;
+  margin-bottom: 9px;
+
+  color: #c99b5c;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 
 .spoc-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 5px;
 }
 
 .spoc {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   align-items: baseline;
-  gap: 28px;
+  gap: 12px;
+  font-size: 13.5px;
 }
 
 .spoc-name {
   color: #ffffff;
-  font-size: 15px;
   font-weight: 600;
+  min-width: 120px;
 }
 
 .spoc-num {
-  color: rgba(255, 255, 255, 0.72);
-
-  font-size: 15px;
+  color: rgba(255, 255, 255, 0.68);
   font-weight: 600;
-  letter-spacing: 0.4px;
 
   text-decoration: none;
   white-space: nowrap;
-
   font-variant-numeric: tabular-nums;
 
   transition: color 0.2s ease;
@@ -3651,146 +3678,123 @@ footer {
   color: #c99b5c;
 }
 
-/* RIGHT — brand + social */
-
-.footer-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 18px;
-
-  text-align: right;
-}
-
-.footer-brand-top {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.footer-logo {
-  width: 52px;
-  height: 52px;
-
-  border-radius: 50%;
-  object-fit: cover;
-
-  border: 1px solid rgba(201, 155, 92, 0.45);
-  box-shadow: 0 0 22px rgba(201, 155, 92, 0.12);
-}
-
-.footer-brand-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.12;
-}
-
-.footer-brand-name {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 21px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.footer-brand-sub {
-  color: #c99b5c;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 3px;
-}
+/* instagram */
 
 .footer-insta {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
 
   color: #ffffff;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
 
   text-decoration: none;
-
   transition: color 0.2s ease;
 }
 
 .footer-insta svg {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
 }
 
 .footer-insta:hover {
   color: #c99b5c;
 }
 
-/* BOTTOM bar */
+/* bottom bar */
 
 .footer-bottom {
-  padding: 16px 8vw;
+  padding: 11px 8vw;
 
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 
   text-align: center;
-
-  color: rgba(255, 255, 255, 0.42);
-
-  font-size: 12px;
+  color: rgba(255, 255, 255, 0.36);
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 1px;
 }
 
 
-/* Footer inside the follow (final) page — slimmer, transparent */
+/* ---- Minimal footer (final page) — subdued, out of the spotlight ---- */
 
-.follow-page .footer-main {
-  padding: 20px 4vw 14px;
+.site-footer--minimal {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 6vw 6px;
+  text-align: center;
 }
 
-.follow-page .footer-bottom {
-  padding: 12px 4vw 14px;
+.site-footer--minimal .footer-spocs {
+  width: auto;
+}
+
+.site-footer--minimal .footer-heading {
+  margin-bottom: 7px;
+  color: rgba(201, 155, 92, 0.6);
+  font-size: 9.5px;
+  letter-spacing: 2px;
+}
+
+.site-footer--minimal .spoc-list {
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+}
+
+.site-footer--minimal .spoc {
+  font-size: 12.5px;
+  gap: 8px;
+  opacity: 0.7;
+}
+
+.site-footer--minimal .spoc-name {
+  min-width: 0;
+  font-weight: 500;
+}
+
+.site-footer--minimal .spoc-num {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-copy {
+  display: block;
+  margin-top: 10px;
+
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 10.5px;
+  letter-spacing: 0.8px;
 }
 
 
 /* =========================================================
-   FOOTER — TABLET / MOBILE
+   FOOTER — MOBILE
 ========================================================= */
 
 @media (max-width: 720px) {
   .footer-main {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 34px;
-
-    padding: 38px 7vw 26px;
+    align-items: center;
+    gap: 16px 18px;
+    padding: 22px 7vw 16px;
   }
 
-  .footer-brand {
-    align-items: flex-start;
-    text-align: left;
-  }
+  /* brand + instagram share one row, coordinators drop below */
+  .footer-brand { order: 1; }
+  .footer-insta { order: 2; }
+  .footer-spocs { order: 3; width: 100%; }
 
-  .footer-spocs {
-    width: 100%;
-    min-width: 0;
-  }
+  .footer-brand-name { font-size: 16px; }
 
-  .spoc {
-    grid-template-columns: 1fr auto;
-    gap: 16px;
-  }
-
-  .follow-page .footer-main {
-    gap: 22px;
-    padding: 18px 6vw 12px;
-  }
+  .footer-bottom { padding: 10px 7vw; }
 }
 
-@media (max-width: 380px) {
-  .spoc {
-    grid-template-columns: 1fr;
-    gap: 2px;
-  }
+@media (max-width: 400px) {
+  .footer-brand-sub { letter-spacing: 2px; }
+  .spoc-name { min-width: 108px; }
 
-  .spoc-num {
-    color: #c99b5c;
+  .site-footer--minimal .spoc-list {
+    flex-direction: column;
+    gap: 3px;
   }
 }

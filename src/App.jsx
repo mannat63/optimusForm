@@ -40,52 +40,62 @@ function InstagramIcon() {
   );
 }
 
-function SiteFooter() {
+function Coordinators() {
+  return (
+    <div className="footer-spocs">
+      <span className="footer-heading">STUDENT COORDINATORS</span>
+
+      <div className="spoc-list">
+        {SPOCS.map((s) => (
+          <div className="spoc" key={s.tel}>
+            <span className="spoc-name">{s.name}</span>
+            <a className="spoc-num" href={`tel:${s.tel}`}>
+              {s.display}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SiteFooter({ minimal = false }) {
+  // Slim, muted footer for the final page so it stays out of the spotlight.
+  if (minimal) {
+    return (
+      <footer className="site-footer site-footer--minimal">
+        <Coordinators />
+        <span className="footer-copy">© 2026 Optimus · ERP Course</span>
+      </footer>
+    );
+  }
+
   return (
     <footer className="site-footer">
       <div className="footer-main">
-        {/* LEFT — student coordinators */}
-        <div className="footer-spocs">
-          <span className="footer-heading">STUDENT COORDINATORS</span>
-
-          <div className="spoc-list">
-            {SPOCS.map((s) => (
-              <div className="spoc" key={s.tel}>
-                <span className="spoc-name">{s.name}</span>
-                <a className="spoc-num" href={`tel:${s.tel}`}>
-                  {s.display}
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* RIGHT — brand + social */}
         <div className="footer-brand">
-          <div className="footer-brand-top">
-            <img src={optimusLogo} alt="Optimus" className="footer-logo" />
+          <img src={optimusLogo} alt="Optimus" className="footer-logo" />
 
-            <div className="footer-brand-text">
-              <span className="footer-brand-name">OPTIMUS</span>
-              <span className="footer-brand-sub">ERP COURSE</span>
-            </div>
+          <div className="footer-brand-text">
+            <span className="footer-brand-name">OPTIMUS</span>
+            <span className="footer-brand-sub">ERP COURSE</span>
           </div>
-
-          <a
-            className="footer-insta"
-            href={OPTIMUS_INSTAGRAM_URL}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <InstagramIcon />
-            <span>{OPTIMUS_INSTAGRAM_HANDLE}</span>
-          </a>
         </div>
+
+        <Coordinators />
+
+        <a
+          className="footer-insta"
+          href={OPTIMUS_INSTAGRAM_URL}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <InstagramIcon />
+          <span>{OPTIMUS_INSTAGRAM_HANDLE}</span>
+        </a>
       </div>
 
-      <div className="footer-bottom">
-        © 2026 Optimus · ERP Course
-      </div>
+      <div className="footer-bottom">© 2026 Optimus · ERP Course</div>
     </footer>
   );
 }
@@ -336,7 +346,7 @@ function App() {
                 </span>
               </div>
 
-              <SiteFooter />
+              <SiteFooter minimal />
             </>
           )}
         </div>
