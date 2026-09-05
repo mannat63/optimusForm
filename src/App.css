@@ -1853,8 +1853,7 @@ button {
 
 .hero {
   min-height: 100vh;
-  height: 100vh;
-  height: 100dvh;
+  min-height: 100dvh;
 
   position: relative;
 
@@ -1937,6 +1936,8 @@ button {
   position: relative;
 
   z-index: 2;
+
+  min-width: 0;
 }
 
 
@@ -2922,9 +2923,9 @@ footer {
   }
 
   .hero-title {
-    font-size: clamp(70px, 17vw, 120px);
+    font-size: clamp(56px, 11vw, 96px);
 
-    letter-spacing: -5px;
+    letter-spacing: -3px;
   }
 
   .hero-description {
@@ -2932,34 +2933,36 @@ footer {
   }
 
   .erp-visual {
-    width: 360px;
-    height: 360px;
+    width: min(360px, 62vw);
+    height: min(360px, 62vw);
 
     margin: 30px auto;
   }
 
+  .orbit {
+    width: auto;
+    height: auto;
+  }
+
   .orbit-one {
-    width: 140px;
-    height: 140px;
+    inset: 32%;
   }
 
   .orbit-two {
-    width: 230px;
-    height: 230px;
+    inset: 16%;
   }
 
   .orbit-three {
-    width: 330px;
-    height: 330px;
+    inset: 2%;
   }
 
   .erp-core {
-    width: 115px;
-    height: 115px;
+    width: clamp(88px, 30%, 120px);
+    height: clamp(88px, 30%, 120px);
   }
 
   .section {
-    padding: 90px 6vw;
+    padding: 84px 6vw;
   }
 
   .about-grid,
@@ -3031,6 +3034,18 @@ footer {
     font-size: 11px;
 
     letter-spacing: 3px;
+  }
+
+  .hero-title {
+    font-size: clamp(44px, 13vw, 68px);
+
+    letter-spacing: -2px;
+
+    margin: 8px 0 20px;
+  }
+
+  .hero-description {
+    font-size: 16px;
   }
 
   .hero-button,
