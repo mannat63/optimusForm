@@ -16,6 +16,14 @@ const OPTIMUS_INSTAGRAM_HANDLE = "@optimus.imnu";
 // "@"; this suffix is fixed, shown to them, and appended before saving.
 const EMAIL_SUFFIX = "@nirmauni.ac.in";
 
+// ── FORM SWITCH ─────────────────────────────────────────────────────────────
+// Registrations are CLOSED. Flip this to `true` to reopen — the entire form,
+// hero and all sections come back exactly as before, and submissions resume.
+// While false, ONLY the "Registrations Closed" page renders: every other page
+// is unmounted, the form never mounts, and no response can be submitted.
+// Nothing else is deleted — this is the single source of truth for open/closed.
+const REGISTRATIONS_OPEN = false;
+
 // Student points of contact shown in the footer.
 const SPOCS = [
   { name: "Ritik Jagwani", display: "+91 78790 18640", tel: "+917879018640" },
@@ -97,6 +105,53 @@ function SiteFooter({ minimal = false }) {
 
       <div className="footer-bottom">© 2026 Optimus · ERP Course</div>
     </footer>
+  );
+}
+
+function ClosedPage() {
+  return (
+    <div
+      className="follow-page closed-page"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="closed-title"
+    >
+      <div className="follow-glow"></div>
+
+      <div className="follow-inner">
+        <div className="follow-logo-ring">
+          <img src={optimusLogo} alt="Optimus" className="follow-logo" />
+        </div>
+
+        <span className="closed-label">OPTIMUS · ERP COURSE</span>
+
+        <h2 id="closed-title" className="follow-headline">
+          REGISTRATIONS
+          <br />
+          CLOSED
+        </h2>
+
+        <p className="follow-message">
+          Thank you for the incredible response. Registrations for the Optimus
+          ERP course are now closed. Follow us on Instagram to stay in the loop
+          for future announcements and opportunities.
+        </p>
+
+        <a
+          className="follow-button"
+          href={OPTIMUS_INSTAGRAM_URL}
+          target="_blank"
+          rel="noreferrer"
+        >
+          FOLLOW OPTIMUS ON INSTAGRAM
+          <span>↗</span>
+        </a>
+
+        <span className="follow-handle">{OPTIMUS_INSTAGRAM_HANDLE}</span>
+      </div>
+
+      <SiteFooter minimal />
+    </div>
   );
 }
 
@@ -275,6 +330,11 @@ function App() {
       behavior: "smooth",
     });
   };
+
+  // Registrations closed: show only the closed page — nothing else mounts.
+  if (!REGISTRATIONS_OPEN) {
+    return <ClosedPage />;
+  }
 
   return (
     <div className="app">

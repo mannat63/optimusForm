@@ -3396,6 +3396,19 @@ footer {
   letter-spacing: -1.5px;
 }
 
+/* Small brand label above the "Registrations Closed" heading */
+.closed-label {
+  display: block;
+
+  margin-bottom: clamp(12px, 2vh, 18px);
+
+  color: #c99b5c;
+
+  font-size: clamp(10px, 1.5vh, 12px);
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
 .follow-tick {
   margin-top: clamp(14px, 2.4vh, 22px);
 
